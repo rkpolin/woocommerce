@@ -1,5 +1,6 @@
 <?php
 require_once('wp_bootstrap_navwalker.php');
+add_theme_support( 'woocommerce' );
 /*Latest Jquery*/
 function my_latest_jquery() {
 		wp_enqueue_script('jquery');

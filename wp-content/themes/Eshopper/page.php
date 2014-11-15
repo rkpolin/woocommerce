@@ -10,7 +10,20 @@
 				</div>
 				
 				<div class="col-sm-9 padding-right">
-					<?php woocommerce_content(); ?>
+					<?php
+				// Start the Loop.
+				while ( have_posts() ) : the_post();
+
+					// Include the page content template.
+					the_title();
+					the_content();	
+		
+					// If comments are open or we have at least one comment, load up the comment template.
+					if ( comments_open() || get_comments_number() ) {
+						comments_template();
+					}
+				endwhile;
+			?>
 				</div>
 			</div>
 		</div>

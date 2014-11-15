@@ -9,7 +9,7 @@
 					<?php get_sidebar(); ?> 
 				</div>
 				
-				<div class="col-sm-9 padding-right">
+				<div class="col-sm-9 padding-right woocommerce">
 					<?php woocommerce_content(); ?>
 				</div>
 			</div>

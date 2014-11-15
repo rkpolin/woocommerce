@@ -25,7 +25,7 @@
     <link rel="apple-touch-icon-precomposed" href="<?php echo get_template_directory_uri(); ?>/<?php echo get_template_directory_uri(); ?>/images/ico/apple-touch-icon-57-precomposed.png">
 	<?php wp_head(); ?> 
 </head><!--/head-->
-
+<?php global $woocommerce;?>
 <body>
 	<header id="header"><!--header-->
 		<div class="header_top"><!--header_top-->

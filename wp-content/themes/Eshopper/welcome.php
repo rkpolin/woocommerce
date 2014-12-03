@@ -80,8 +80,9 @@ get_header();?>
 										</div>
 										<div class="choose">
 											<ul class="nav nav-pills nav-justified">
-												<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-												<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+											
+												<li><i class="fa fa-plus-square"></i><?php echo do_shortcode('[yith_wcwl_add_to_wishlist]')?></li>
+												<li><i class="fa fa-plus-square"></i><?php echo do_shortcode('[yith_compare_button]')?></li>
 											</ul>
 										</div>
 									</div>

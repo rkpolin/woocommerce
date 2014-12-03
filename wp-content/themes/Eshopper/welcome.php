@@ -15,31 +15,80 @@ get_header();?>
 				<div class="col-sm-9 padding-right">
 					<div class="features_items"><!--features_items-->
 						<h2 class="title text-center">Features Items</h2>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-										<div class="productinfo text-center">
-											<img src="<?php echo get_template_directory_uri(); ?>/images/home/product1.jpg" alt="" />
-											<h2>$56</h2>
-											<p>Easy Polo Black Edition</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+						<?php
+								$args = array( 
+								  'post_type' => 'product', 
+								  'orderby'=> 'date',
+								  'posts_per_page'=> 6,
+								  'taxonomy' => 'product_cat',
+								  'term' => 'featured'
+								);
+								$myquery = new WP_Query($args);
+								 if ( $myquery->have_posts() ) : ?>
+								<?php while ( $myquery->have_posts() ) : $myquery->the_post(); 
+								//example, display a list of title 
+								?>
+								<div class="col-sm-4">
+									<div class="product-image-wrapper">
+										<div class="single-products">
+												<div class="productinfo text-center">
+													 <?php 
+														//display product thumbnail
+														if (has_post_thumbnail()) { 
+														$image_src = wp_get_attachment_image_src( get_post_thumbnail_id(),'thumbnail' ); 
+														echo '<img src="' . $image_src[0] . '" width="140" alt="" />';
+														}
+														else {
+														  echo '<img src="/images/defaul_image.jpg" width="140" alt=" />';
+														}
+														  	 	
+														 echo '<h2>'.$product->get_price_html().'</h2>'; ?>
+														 <p><?php the_title();?></p>
+														 <?php echo apply_filters( 'woocommerce_loop_add_to_cart_link',
+													sprintf( '<a href="%s" rel="nofollow" data-product_id="%s" data-product_sku="%s" class="btn btn-default add-to-cart %s  product_type_%s"><i class="fa fa-shopping-cart"></i>%s</a>',
+														esc_url( $product->add_to_cart_url() ),
+														esc_attr( $product->id ),
+														esc_attr( $product->get_sku() ),
+														$product->is_purchasable() ? 'add_to_cart_button' : '',
+														esc_attr( $product->product_type ),
+														esc_html( $product->add_to_cart_text() )
+													),
+												$product );?>
+
+												</div>
+												<div class="product-overlay">
+													<div class="overlay-content">
+														<?php echo '<h2>'.$product->get_price_html().'</h2>';?>
+														 <p><?php the_title();?></p>
+														 <?php echo apply_filters( 'woocommerce_loop_add_to_cart_link',
+													sprintf( '<a href="%s" rel="nofollow" data-product_id="%s" data-product_sku="%s" class="btn btn-default add-to-cart %s  product_type_%s"><i class="fa fa-shopping-cart"></i>%s</a>',
+														esc_url( $product->add_to_cart_url() ),
+														esc_attr( $product->id ),
+														esc_attr( $product->get_sku() ),
+														$product->is_purchasable() ? 'add_to_cart_button' : '',
+														esc_attr( $product->product_type ),
+														esc_html( $product->add_to_cart_text() )
+													),
+												$product );?>
+													</div>
+												</div>
+											<?php endwhile; ?>
+														 
+												<?php else : ?>
+												<p>Not Found</p>
+												<?php endif; ?>
 										</div>
-										<div class="product-overlay">
-											<div class="overlay-content">
-												<h2>$56</h2>
-												<p>Easy Polo Black Edition</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
+										<div class="choose">
+											<ul class="nav nav-pills nav-justified">
+												<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+												<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+											</ul>
 										</div>
+									</div>
 								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
+							
+						
+						
 						<div class="col-sm-4">
 							<div class="product-image-wrapper">
 								<div class="single-products">

@@ -5,7 +5,7 @@ add_theme_support( 'woocommerce' );
 function my_latest_jquery() {
 		wp_enqueue_script('jquery');
 }
-add_action('init', 'my_latest_jquery');
+add_action('wp_head', 'my_latest_jquery');
 
 	// add menu support and fallback menu if menu doesn't exist
 	register_nav_menus( array(
